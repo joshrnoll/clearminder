@@ -10,8 +10,6 @@ export default function NewProjectForm(){
   let name;
   let goal;
   let dueDate;
-  let startDate;
-  let endDate;
 
   return(
     <>
@@ -24,19 +22,14 @@ export default function NewProjectForm(){
         <input placeholder="Goal" onBlur={(event) => goal = event.target.value }>
         </input>
 
-        <input placeholder="Due Date" onBlur={(event) => dueDate = event.target.value }>
-        </input>
-
-        <input placeholder="Start Date" onBlur={(event) => startDate = event.target.value }>
-        </input>
-
-        <input placeholder="End Date" onBlur={(event) => endDate = event.target.value }>
+        <label htmlFor="dueDate">Due Date</label>
+        <input className="mb-5" id="dueDate" type="date" onBlur={(event) => dueDate = event.target.value }>
         </input>
 
       </div>
 
       <button id="newProjectSubmitButton" onClick={() => {
-        let newProject = new Project(name, goal, dueDate, startDate, endDate)
+        let newProject = new Project(name, goal, dueDate)
         projects.push(newProject)
         alert("Project added!")
       }}>Submit</button>

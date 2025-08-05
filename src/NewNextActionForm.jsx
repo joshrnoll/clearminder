@@ -1,18 +1,18 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { NextActionContext } from './Contexts'
+import { NextActionContext, ProjectContext, ContextsForNextActions } from './Contexts'
 import { NextAction } from './classes'
 
 export default function NewNextActionForm(){
 
   const nextActions = useContext(NextActionContext);
+  const projects = useContext(ProjectContext);
+  const nextActionContexts = useContext(ContextsForNextActions)
 
   let name;
   let context;
   let dueDate;
-  let startDate;
-  let endDate;
-  let linkedProjects = [];
+  let linkedProject;
 
   return(
     <>
@@ -22,31 +22,39 @@ export default function NewNextActionForm(){
         <input placeholder="Name" onBlur={(event) => name = event.target.value }>
         </input>
 
-        <input placeholder="Context" onBlur={(event) => context = event.target.value }>
+        <label htmlFor="context">Context</label>
+        <select className="border rounded-md bg-[#242424]" id="context" onBlur={(event) => context = event.target.value }>
+          <option selected>General</option>
+          { nextActionContexts.map((context) => {
+            return <option>{ context }</option>
+          })}
+        </select>
+
+        <input type="date" placeholder="Due Date" onBlur={(event) => dueDate = event.target.value }>
         </input>
 
-        <input placeholder="Due Date" onBlur={(event) => dueDate = event.target.value }>
-        </input>
-
-        <input placeholder="Start Date" onBlur={(event) => startDate = event.target.value }>
-        </input>
-
-        <input placeholder="End Date" onBlur={(event) => endDate = event.target.value }>
-        </input>
-
-        <input placeholder="Linked Projects" onBlur={(event) => linkedProjects = event.target.value }>
-        </input>
+        <label htmlFor="linkedProjects">Linked Project</label>
+        <select id="linkedProjects" className="border rounded-md mb-5 bg-[#242424]" onBlur={(event) => linkedProject = event.target.value }>
+          <option selected>None</option>
+          { projects.map((project) => {
+            return <option>{ project.name }</option>
+          }) }
+        </select>
 
       </div>
 
       <button id="newProjectSubmitButton" onClick={() => {
-        let newNextAction = new NextAction(name, context, dueDate, startDate, endDate, linkedProjects)
+        let newNextAction = new NextAction(name, context, dueDate, linkedProject)
         nextActions.push(newNextAction)
         alert("Next Action added!")
       }}>Submit</button>
 
       <Link to="/home">
         <button>Go Back</button>
+      </Link>
+
+      <Link to="/new-context">
+        <button>Create a new context</button>
       </Link>
     </>
   )
