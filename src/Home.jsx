@@ -30,11 +30,11 @@ function Home() {
         </div>
 
         <div className="flex flex-col gap-3 mt-5">
-          <Link to="/home/next-actions">
+          <Link to="/next-actions">
             <button>View Next Actions</button>
           </Link>
 
-          <Link to="/home/projects">
+          <Link to="/projects">
             <button>View Projects</button>
           </Link>
 
@@ -47,7 +47,6 @@ function Home() {
       <Routes>
         <Route path="projects/*" element={<ProjectsList projects={ projects }></ProjectsList>}></Route>
 
-        <Route path="next-actions/*" element={<NextActionsList nextActions={ nextActions }></NextActionsList>}></Route>
       </Routes>
     </>
   )

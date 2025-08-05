@@ -1,26 +1,49 @@
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { ProjectContext } from './Contexts'
 
-export default function NextActionsList({ projects }){
+export default function ProjectsList(){
+
+let projects = useContext(ProjectContext)
 
   if (projects.length === 0){
     return(
-      <h1>You have no projects!</h1>
+      <>
+        <Link to="/home">
+          <button className="m-3">X</button>
+        </Link>
+        <h1>You have no projects!</h1>
+      </>
     )
   }
 
   else{
-    return(
-      <>
-        <div>
-          <Link to="/home"><button>X</button></Link>
-          <h2>Projects List</h2>
-          <ul>
-            { projects.map((project) => {
-              return <li key={project.name}>{ project.name }</li>
-            }) }
-          </ul>
-        </div>
-      </>
-    )
+  return (
+    <>
+      <Link to="/home">
+        <button className="m-3">X</button>
+      </Link>
+      <table className="border border-separate border-spacing-2 rounded-md">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Goal</th>
+            <th>Due Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          { projects.map((project) => {
+            return (
+              <tr>
+                <td>{ project?.name }</td>
+                <td>{ project?.goal }</td>
+                <td>{ project?.dueDate }</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </>
+  )
   }
 }

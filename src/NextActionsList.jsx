@@ -1,29 +1,43 @@
-import { Link, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
-import NextActionDetailView from './NextActionDetailView'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { NextActionContext } from './Contexts'
 
-export default function NextActionsList({ nextActions }){
+export default function NextActionsList(){
 
-  const [selectedNextAction, setSelectedNextAction] = useState();
+  let nextActions = useContext(NextActionContext)
 
-  return(
+  return (
     <>
-      <Link to="/home"><button>X</button></Link>
+      <Link to="/home">
+        <button className="m-3">X</button>
+      </Link>
 
-      <h2>Next Actions List</h2>
-      <ul>
-        { nextActions.map((nextAction) => {
-          return (
-            <Link to={`/home/next-actions/details/${nextAction.id}`}>
-              <button onClick={() => setSelectedNextAction(nextAction)}>{nextAction.name}</button>
-            </Link>
-          )
-        }) }
-      </ul>
-
-      <Routes>
-        <Route path="details/:id" element={<NextActionDetailView selectedNextAction={ selectedNextAction }></NextActionDetailView>}></Route>
-      </Routes>
+      <table className="border border-separate border-spacing-2 rounded-md">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Context</th>
+            <th>Due Date</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Associated Project</th>
+          </tr>
+        </thead>
+        <tbody>
+          { nextActions.map((nextAction) => {
+            return (
+              <tr>
+                <td>{ nextAction?.name }</td>
+                <td>{ nextAction?.context }</td>
+                <td>{ nextAction?.dueDate }</td>
+                <td>{ nextAction?.startDate }</td>
+                <td>{ nextAction?.endDate }</td>
+                <td>{ nextAction?.linkedProjects }</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </>
   )
 }
