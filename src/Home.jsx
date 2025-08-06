@@ -1,16 +1,7 @@
 import './Home.css'
-import { useContext, useState } from 'react'
-import { Link, Routes, Route } from 'react-router-dom'
-import { ProjectContext } from './Contexts'
-import NewProjectForm from './NewProjectForm'
-import ProjectsList from './ProjectsList'
-import NewNextActionForm from './NewNextActionForm'
-import NextActionsList from './NextActionsList'
-import Calendar from './Calendar'
+import { Link } from 'react-router-dom'
 
 function Home() {
-  const projects = useContext(ProjectContext)
-  // const nextActions = useContext(NextActionContext)
 
   return (
     <>
@@ -43,11 +34,6 @@ function Home() {
           </Link>
         </div>
       </div>
-
-      <Routes>
-        <Route path="projects/*" element={<ProjectsList projects={ projects }></ProjectsList>}></Route>
-
-      </Routes>
     </>
   )
 }

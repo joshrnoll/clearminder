@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { ProjectContext } from './Contexts'
+import { ProjectsContext } from './Welcome'
 
 export default function ProjectsList(){
 
-let projects = useContext(ProjectContext)
+let projectsState = useContext(ProjectsContext)
+console.log(projectsState)
 
-  if (projects.length === 0){
+  if (projectsState.projects.length === 0){
     return(
       <>
         <Link to="/home">
@@ -32,7 +33,7 @@ let projects = useContext(ProjectContext)
           </tr>
         </thead>
         <tbody>
-          { projects.map((project) => {
+          { projectsState.projects.map((project) => {
             return (
               <tr>
                 <td className="px-2 py-1 border rounded-md">{ project?.name }</td>

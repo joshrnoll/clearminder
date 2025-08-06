@@ -1,16 +1,12 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { ProjectContext, ContextsForNextActions } from './Contexts'
 import { NextAction } from './classes'
-import { NextActionContext } from './Welcome'
+import { NextActionsContext } from './Welcome'
 
 
 export default function NewNextActionForm(){
 
-  const nextActionsState = useContext(NextActionContext);
-  console.log(nextActionsState)
-  const projects = useContext(ProjectContext);
-  const nextActionContexts = useContext(ContextsForNextActions)
+  const nextActionsState = useContext(NextActionsContext);
 
   let name;
   let context;
@@ -28,7 +24,7 @@ export default function NewNextActionForm(){
         <label htmlFor="context">Context</label>
         <select className="border rounded-md bg-[#242424]" id="context" onBlur={(event) => context = event.target.value }>
           <option selected>General</option>
-          { nextActionContexts.map((context) => {
+          { nextActionsState.nextActionsContexts.map((context) => {
             return <option>{ context }</option>
           })}
         </select>
@@ -39,7 +35,7 @@ export default function NewNextActionForm(){
         <label htmlFor="linkedProjects">Linked Project</label>
         <select id="linkedProjects" className="border rounded-md mb-5 bg-[#242424]" onBlur={(event) => linkedProject = event.target.value }>
           <option selected>None</option>
-          { projects.map((project) => {
+          { nextActionsState.projects.map((project) => {
             return <option>{ project.name }</option>
           }) }
         </select>

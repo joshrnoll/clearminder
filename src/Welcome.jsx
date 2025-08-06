@@ -8,12 +8,16 @@ import ProjectsList from './ProjectsList'
 import NewContextForm from './NewContextForm'
 import Calendar from './Calendar'
 
-export const NextActionContext = createContext()
+export const NextActionsContext = createContext()
+export const ProjectsContext = createContext()
+export const CalendarContext = createContext()
 
 export default function Welcome(){
 
-  const [userWelcomed, setUserWelcomed] = useState(false);
+  const [userWelcomed, setUserWelcomed] = useState(false)
   const [nextActions, setNextActions] = useState([])
+  const [nextActionsContexts, setNextActionsContexts] = useState([])
+  const [projects, setProjects] = useState([])
 
   return(
     <>
@@ -29,20 +33,41 @@ export default function Welcome(){
 
     <Routes>
       <Route path="/home/*" element={<Home></Home>}></Route>
-      <Route path="/new-project" element={<NewProjectForm></NewProjectForm>}></Route>
-      <Route path="/projects" element={<ProjectsList></ProjectsList>}></Route>
+      <Route path="/new-project" element={
+        <ProjectsContext value={{ projects, setProjects}}>
+          <NewProjectForm></NewProjectForm>
+        </ProjectsContext>
+        }></Route>
+
+      <Route path="/projects" element={
+        <ProjectsContext value={{ projects, setProjects}}>
+          <ProjectsList></ProjectsList>
+        </ProjectsContext>
+        }></Route>
+
       <Route path="/new-next-action" element={
-        <NextActionContext value={{ nextActions, setNextActions }}>
+        <NextActionsContext value={{ nextActions, setNextActions, nextActionsContexts, setNextActionsContexts, projects, setProjects }}>
           <NewNextActionForm></NewNextActionForm>
-        </NextActionContext>
+        </NextActionsContext>
         }></Route>
+
       <Route path="/next-actions" element={
-        <NextActionContext value={{ nextActions, setNextActions }}>
+        <NextActionsContext value={{ nextActions, setNextActions }}>
           <NextActionsList></NextActionsList>
-        </NextActionContext>
+        </NextActionsContext>
         }></Route>
-      <Route path="/new-context" element={<NewContextForm></NewContextForm>}></Route>
-      <Route path="/calendar" element={<Calendar></Calendar>}></Route>
+
+      <Route path="/new-context" element={
+        <NextActionsContext value={{ nextActionsContexts, setNextActionsContexts }}>
+          <NewContextForm></NewContextForm>
+        </NextActionsContext>
+        }></Route>
+
+      <Route path="/calendar" element={
+        <CalendarContext value={{ nextActions, projects, setNextActions, setProjects }}>
+          <Calendar></Calendar>
+        </CalendarContext>
+        }></Route>
     </Routes>
 
     </>

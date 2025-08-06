@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { ContextsForNextActions } from './Contexts'
+import { NextActionsContext } from './Welcome'
 
 
 export default function NewContextForm(){
 
-  let contexts = useContext(ContextsForNextActions)
+  let nextActionsState = useContext(NextActionsContext)
 
   let newContext;
 
@@ -19,7 +19,7 @@ export default function NewContextForm(){
       </div>
 
       <button id="newContextSubmitButton" onClick={() => {
-        contexts.push(newContext)
+        nextActionsState.setNextActionsContexts((prevData) => [ ...prevData, newContext])
         alert("New context added!")
       }}>Submit</button>
 

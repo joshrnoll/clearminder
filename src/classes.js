@@ -23,7 +23,3 @@ export class NextAction {
     this.complete = false;
   }
 }
-
-  // export class Calendar {
-
-  // }

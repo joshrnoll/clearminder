@@ -1,3 +1,6 @@
+
+// This component is not currently used
+1
 import { useContext } from 'react'
 import { NextActionContext } from './Welcome'
 

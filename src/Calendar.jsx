@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { ProjectContext } from './Contexts'
+import { ProjectsContext, NextActionsContext } from './Welcome'
 
 export default function Calendar(){
-  const projects = useContext(ProjectContext)
-  const nextActions = useContext(NextActionContext)
+  const projectsState = useContext(ProjectsContext)
+  const nextActionsState = useContext(NextActionsContext)
 
   let today = new Date();
   let currentMonth = today.getMonth()
@@ -24,21 +24,17 @@ export default function Calendar(){
   let nextActionsWithDates = [];
   let projectsWithDates = [];
 
-  projects.forEach((project) => {
+  projectsState.projects.forEach((project) => {
     if (project.dueDate){
       projectsWithDates.push(project)
     }
   })
 
-  nextActions.forEach((nextAction) => {
+  nextActionsState.nextActions.forEach((nextAction) => {
     if (nextAction.dueDate){
       nextActionsWithDates.push(nextAction)
     }
   })
-
-  console.log(projectsWithDates)
-  console.log(`next actions with dates: ${nextActionsWithDates}`)
-
 
   return (
     <>

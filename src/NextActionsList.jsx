@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { NextActionContext } from './Welcome'
+import { NextActionsContext } from './Welcome'
 
 export default function NextActionsList(){
 
-  const nextActionsState = useContext(NextActionContext)
+  const nextActionsState = useContext(NextActionsContext)
 
   return (
     <>

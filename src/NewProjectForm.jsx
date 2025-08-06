@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
-import { ProjectContext } from './Contexts'
+import { ProjectsContext } from './Welcome'
 import { Project } from './classes'
 
 export default function NewProjectForm(){
 
-  const projects = useContext(ProjectContext);
+  const projectsState = useContext(ProjectsContext);
 
   let name;
   let goal;
@@ -30,7 +30,7 @@ export default function NewProjectForm(){
 
       <button id="newProjectSubmitButton" onClick={() => {
         let newProject = new Project(name, goal, dueDate)
-        projects.push(newProject)
+        projectsState.setProjects((prevData) => [...prevData, newProject])
         alert("Project added!")
       }}>Submit</button>
 
