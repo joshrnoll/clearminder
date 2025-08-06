@@ -1,11 +1,14 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { NextActionContext, ProjectContext, ContextsForNextActions } from './Contexts'
+import { ProjectContext, ContextsForNextActions } from './Contexts'
 import { NextAction } from './classes'
+import { NextActionContext } from './Welcome'
+
 
 export default function NewNextActionForm(){
 
-  const nextActions = useContext(NextActionContext);
+  const nextActionsState = useContext(NextActionContext);
+  console.log(nextActionsState)
   const projects = useContext(ProjectContext);
   const nextActionContexts = useContext(ContextsForNextActions)
 
@@ -45,7 +48,7 @@ export default function NewNextActionForm(){
 
       <button id="newProjectSubmitButton" onClick={() => {
         let newNextAction = new NextAction(name, context, dueDate, linkedProject)
-        nextActions.push(newNextAction)
+        nextActionsState.setNextActions(newNextAction)
         alert("Next Action added!")
       }}>Submit</button>
 

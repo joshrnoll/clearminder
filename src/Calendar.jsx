@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { ProjectContext, NextActionContext } from './Contexts'
+import { ProjectContext } from './Contexts'
 
 export default function Calendar(){
   const projects = useContext(ProjectContext)
@@ -50,7 +50,7 @@ export default function Calendar(){
       <div className="grid grid-cols-7 gap-5">
         { arrayOfDaysInCurrentMonth.map((day) => {
           return (
-            <div key={day} className="border w-24 h-24 hover:animate-bounce">
+            <div key={day} className="border w-24 h-24 hover:animate-pulse">
                 <h4>{day}</h4>
                 <ul>
                  {projectsWithDates.map((project) => {

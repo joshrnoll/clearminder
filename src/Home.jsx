@@ -1,7 +1,7 @@
 import './Home.css'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link, Routes, Route } from 'react-router-dom'
-import { ProjectContext, NextActionContext } from './Contexts'
+import { ProjectContext } from './Contexts'
 import NewProjectForm from './NewProjectForm'
 import ProjectsList from './ProjectsList'
 import NewNextActionForm from './NewNextActionForm'
@@ -10,7 +10,7 @@ import Calendar from './Calendar'
 
 function Home() {
   const projects = useContext(ProjectContext)
-  const nextActions = useContext(NextActionContext)
+  // const nextActions = useContext(NextActionContext)
 
   return (
     <>

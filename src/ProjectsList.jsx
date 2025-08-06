@@ -35,9 +35,9 @@ let projects = useContext(ProjectContext)
           { projects.map((project) => {
             return (
               <tr>
-                <td>{ project?.name }</td>
-                <td>{ project?.goal }</td>
-                <td>{ project?.dueDate }</td>
+                <td className="px-2 py-1 border rounded-md">{ project?.name }</td>
+                <td className="px-2 py-1 border rounded-md">{ project?.goal }</td>
+                <td className="px-2 py-1 border rounded-md">{ project?.dueDate }</td>
               </tr>
             )
           })}
