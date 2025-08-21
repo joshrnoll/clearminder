@@ -1,11 +1,11 @@
 import { createRoot } from 'react-dom/client'
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './index.css'
-import Welcome from './Welcome'
+import App from './App'
 
 
 createRoot(document.getElementById('root')).render(
   <Router>
-    <Welcome></Welcome>
+    <App></App>
   </Router>
 )

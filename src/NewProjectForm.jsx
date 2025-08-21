@@ -1,42 +1,52 @@
 import { Link } from 'react-router-dom'
-import { useContext } from 'react';
-import { ProjectsContext } from './Welcome'
+import { useContext } from 'react'
+import { AppContext } from './App'
 import { Project } from './classes'
+import MenuBar from './MenuBar'
+import Form from './blocks/Form'
 
 export default function NewProjectForm(){
 
-  const projectsState = useContext(ProjectsContext);
+  const { setProjects } = useContext(AppContext);
 
   let name;
   let goal;
   let dueDate;
 
+  const handleSubmit = () => {
+    let newProject = new Project(name, goal, dueDate)
+    console.log(newProject)
+    setProjects((prevData) => [...prevData, newProject])
+  }
+
+  const newProjectForm = (
+    <div id="newProjectForm" className="flex flex-col gap-2">
+      <input placeholder="Name" onInput={(event) => name = event.target.value } />
+
+      <input placeholder="Goal" onInput={(event) => goal = event.target.value } />
+
+      <label htmlFor="dueDate">Due Date</label>
+      <input className="mb-5" id="dueDate" type="date" onInput={(event) => dueDate = event.target.value } />
+
+      <Link to="/projects">
+        <button
+          id="newProjectSubmitButton"
+          className="btn-primary"
+          onClick={handleSubmit}>
+            Submit
+          </button>
+      </Link>
+    </div>
+  )
+
   return(
     <>
-      <h1 className="m-3">New Project</h1>
-
-      <div id="newProjectForm" className="flex flex-col content-center flex-wrap gap-2">
-        <input placeholder="Name" onBlur={(event) => name = event.target.value }>
-        </input>
-
-        <input placeholder="Goal" onBlur={(event) => goal = event.target.value }>
-        </input>
-
-        <label htmlFor="dueDate">Due Date</label>
-        <input className="mb-5" id="dueDate" type="date" onBlur={(event) => dueDate = event.target.value }>
-        </input>
-
+      <div className="flex">
+        <MenuBar></MenuBar>
+        <Form title="Project" form={newProjectForm} />
       </div>
-
-      <button id="newProjectSubmitButton" onClick={() => {
-        let newProject = new Project(name, goal, dueDate)
-        projectsState.setProjects((prevData) => [...prevData, newProject])
-        alert("Project added!")
-      }}>Submit</button>
-
-      <Link to="/home">
-        <button>Go Back</button>
-      </Link>
     </>
   )
 }
+
+

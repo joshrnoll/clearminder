@@ -1,4 +1,4 @@
-  function getRandomNumber(max) {
+function getRandomNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
@@ -21,5 +21,18 @@ export class NextAction {
     this.dueDate = dueDate;
     this.linkedProjects = linkedProjects;
     this.complete = false;
+  }
+}
+
+export class SomedayMaybe {
+  constructor(name){
+    this.name = name
+  }
+}
+
+
+export class Stupf {
+  constructor(stupf){
+    this.stupf = stupf;
   }
 }

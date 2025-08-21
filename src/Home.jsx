@@ -1,38 +1,60 @@
-import './Home.css'
-import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { motion } from 'motion/react'
+import MenuBar from './MenuBar'
+import { AppContext } from './App'
 
 function Home() {
 
+  const today = () => {
+    let now = new Date()
+    let year = now.getFullYear()
+    let month = String(now.getMonth() + 1).padStart(2, '0')
+    let day = String(now.getDate()).padStart(2, '0')
+    let currentDate = `${year}-${month}-${day}`
+    return currentDate
+  }
+
+  const { stupf, nextActions } = useContext(AppContext)
   return (
     <>
-      <h1>Stupf</h1>
-      <h2>A To-Do app built on GTD Principals</h2>
+      <div id="homeContainer" className="grid grid-cols-3">
 
-      <div className="flex gap-15 mt-5">
-        <div className="flex flex-col gap-3 mt-5">
-          <Link to="/new-project">
-            <button>New Project</button>
-          </Link>
+        <MenuBar></MenuBar>
 
-          <Link to="/new-next-action">
-            <button>New Next Action</button>
-          </Link>
+        <motion.div
+          initial={{ scale: 0 }} animate={{ scale: 1 }}
+          id="newSomedayMaybeForm"
+          className="flex flex-col content-center flex-wrap gap-2"
+        >
 
-        </div>
+          <br />
 
-        <div className="flex flex-col gap-3 mt-5">
-          <Link to="/next-actions">
-            <button>View Next Actions</button>
-          </Link>
+          <h2 className="flex justify-center text-[32pt] font-bold">Inbox</h2>
 
-          <Link to="/projects">
-            <button>View Projects</button>
-          </Link>
+          <ul>
+            {stupf.length === 0 && <p className="flex justify-center italic">Your "in" is empty!</p>}
 
-          <Link to="/calendar">
-            <button>View Calendar</button>
-          </Link>
-        </div>
+            {stupf.map((item) => {
+              return <li className="flex justify-center italic">{item}</li>
+            })}
+          </ul>
+
+          <br />
+
+          <h2 className="flex justify-center text-[24pt] font-bold">For Today</h2>
+
+          <ul>
+            {nextActions.length === 0 && <p className="flex justify-center italic">Nothing for today!</p>}
+
+            {nextActions.length > 0 && nextActions.map((item) => {
+              if (item.dueDate && item.dueDate === today()) {
+                return <li className="flex justify-center italic">{item.name}</li>
+              }
+            })}
+          </ul>
+
+        </motion.div>
+
       </div>
     </>
   )

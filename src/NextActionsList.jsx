@@ -1,41 +1,71 @@
-import { Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import { motion } from 'motion/react'
 import { useContext } from 'react'
-import { NextActionsContext } from './Welcome'
+import { AppContext } from './App'
+import MenuBar from './MenuBar'
+import ListHeader from './blocks/ListHeader'
+import NextActionsListItem from './blocks/NextActionsListItem'
+import ContextFilter from './blocks/ContextFilter'
 
-export default function NextActionsList(){
+export default function NextActionsList() {
 
-  const nextActionsState = useContext(NextActionsContext)
+  const { nextActions } = useContext(AppContext)
+  const params = useParams()
+
+  const nextActionsList = (
+    <ul>
+      {params.context ?
+
+        nextActions.map((nextAction) => {
+          return (
+            !nextAction.complete && nextAction.context === params.context &&
+            <>
+              <NextActionsListItem nextAction={nextAction}/>
+            </>
+          )
+        })
+        :
+        nextActions.map((nextAction) => {
+          return (
+            !nextAction.complete &&
+            <>
+              <NextActionsListItem nextAction={nextAction}/>
+            </>
+          )
+        })}
+
+    </ul>
+  )
 
   return (
     <>
-      <Link to="/home">
-        <button className="m-3">X</button>
-      </Link>
+      <div className="flex">
 
-      <table className="border-separate border-spacing-2 rounded-md">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Context</th>
-            <th>Due Date</th>
-            <th>Associated Project</th>
-          </tr>
-        </thead>
-        <tbody>
-          { nextActionsState.nextActions.map((nextAction) => {
-            return (
-              !nextAction.complete &&
-              <tr>
-                <td className="px-2 py-1 border rounded-md">{ nextAction?.name }</td>
-                <td className="px-2 py-1 border rounded-md">{ nextAction?.context }</td>
-                <td className="px-2 py-1 border rounded-md">{ nextAction?.dueDate }</td>
-                <td className="px-2 py-1 border rounded-md">{ nextAction?.linkedProjects }</td>
-                <td><button onClick={() => nextAction.complete = true }>✅</button></td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+        <MenuBar></MenuBar>
+
+        <motion.div
+          initial={{ scale: 0 }} animate={{ scale: 1 }}
+          id="newProjectForm"
+          className="flex flex-col items-center gap-2 w-[100%]">
+
+          <ListHeader heading="Next Actions List" route="/new-next-action"/>
+
+          <div className="w-[100vw] flex justify-center">
+            <div className="flex">
+              <ContextFilter />
+            </div>
+            {params.context &&
+              <Link to="/next-actions" className="absolute right-5">
+                <button className="btn-primary">clear filter</button>
+              </Link>
+            }
+          </div>
+
+          {nextActionsList}
+
+        </motion.div>
+
+      </div>
     </>
   )
 }

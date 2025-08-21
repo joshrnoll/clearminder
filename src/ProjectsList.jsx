@@ -1,50 +1,28 @@
-import { Link } from 'react-router-dom'
+import { motion } from 'motion/react'
 import { useContext } from 'react'
-import { ProjectsContext } from './Welcome'
+import { AppContext } from './App'
+import MenuBar from './MenuBar'
+import ListHeader from './blocks/ListHeader'
 
-export default function ProjectsList(){
+export default function ProjectsList() {
 
-let projectsState = useContext(ProjectsContext)
-console.log(projectsState)
+  let { projects } = useContext(AppContext)
 
-  if (projectsState.projects.length === 0){
-    return(
-      <>
-        <Link to="/home">
-          <button className="m-3">X</button>
-        </Link>
-        <h1>You have no projects!</h1>
-      </>
-    )
-  }
-
-  else{
   return (
     <>
-      <Link to="/home">
-        <button className="m-3">X</button>
-      </Link>
-      <table className="border border-separate border-spacing-2 rounded-md">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Goal</th>
-            <th>Due Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          { projectsState.projects.map((project) => {
-            return (
-              <tr>
-                <td className="px-2 py-1 border rounded-md">{ project?.name }</td>
-                <td className="px-2 py-1 border rounded-md">{ project?.goal }</td>
-                <td className="px-2 py-1 border rounded-md">{ project?.dueDate }</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <div className="flex">
+        <MenuBar></MenuBar>
+
+        <motion.div
+          initial={{ scale: 0 }} animate={{ scale: 1 }}
+          id="newProjectForm"
+          className="flex flex-col items-center gap-2 w-[100%]">
+
+          <ListHeader heading="Projects List" route="/new-project"/>
+
+        </motion.div>
+      </div>
     </>
   )
-  }
+
 }
