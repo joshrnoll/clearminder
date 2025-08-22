@@ -1,7 +1,14 @@
 {
-  "name": "sdi-project-2",
+  "name": "stupf-server",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Frontend for \"Stupf\" -- a To-Do app based on GTD principles",
+  "license": "GPL",
+  "author": "Josh Noll",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshrnoll/stupf-api.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
