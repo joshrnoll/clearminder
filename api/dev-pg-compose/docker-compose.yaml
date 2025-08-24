@@ -1,0 +1,19 @@
+# To run, use:
+# docker compose --env-file ../.env up -d
+
+services:
+  db:
+    image: postgres
+    hostname: stupf-dev-postgres
+    container_name: stupf-dev-postgres
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./dev-pg-data:/var/lib/postgresql"
