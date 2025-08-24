@@ -1,10 +1,16 @@
 # Stupf
 
-A to-do app built on [GTD Principals](https://gettingthingsdone.com/)
+A to-do app built on [GTD Principals](https://gettingthingsdone.com/).
 
-## Frontend
+# Frontend
 
-# Building from source
+## Develop Locally
+
+```
+npm install && npm run dev
+```
+
+## Building from source
 
 1. Build app with vite
 
@@ -18,7 +24,7 @@ npm run build
 docker built . -t <tag-name>
 ```
 
-## Backend
+# Backend
 The backend runs on express and postgres. To build a development environment:
 
 1. Install dependencies:
