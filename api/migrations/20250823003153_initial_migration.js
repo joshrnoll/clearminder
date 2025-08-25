@@ -50,6 +50,7 @@ exports.up = async function(knex) {
     .createTable('next_actions', (t) => {
       t.increments('next_action_id')
       t.timestamp('created_at', { precision: 6 }).defaultTo(knex.fn.now(6));
+      t.string('content')
       t.uuid('associated_user').notNullable()
       t.foreign('associated_user').references('users.user_id')
       t.integer('next_actions_context_id')
