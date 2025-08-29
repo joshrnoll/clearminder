@@ -1,6 +1,8 @@
-# Stupf
+# ClearMinder
 
-A to-do app built on [GTD Principals](https://gettingthingsdone.com/).
+<img src="ui/public/favicon/android-chrome-192x192.png" style="border-radius: 15px; margin: 5px;" />
+
+#### A to-do app built on [GTD Principals](https://gettingthingsdone.com/).
 
 # Frontend
 

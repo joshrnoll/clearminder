@@ -1,15 +1,11 @@
 const { faker } = require('@faker-js/faker')
-
-function getRandomInteger(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+const { getRandomInteger } = require('../utils')
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
+
 exports.seed = async function(knex) {
   await knex.select('*').from('users')
   .then(async (users) => {
@@ -27,7 +23,6 @@ exports.seed = async function(knex) {
             due_time: faker.date.future().toLocaleTimeString("en-US"),
             start_time: faker.date.future().toLocaleTimeString("en-US"),
             end_time: faker.date.future().toLocaleTimeString("en-US"),
-            complete: faker.datatype.boolean()
           }
         ])
       }

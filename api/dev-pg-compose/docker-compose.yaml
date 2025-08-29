@@ -4,8 +4,8 @@
 services:
   db:
     image: postgres
-    hostname: stupf-dev-postgres
-    container_name: stupf-dev-postgres
+    hostname: clearminder-dev-postgres
+    container_name: clearminder-dev-postgres
     restart: always
     # set shared memory limit when using docker compose
     shm_size: 128mb

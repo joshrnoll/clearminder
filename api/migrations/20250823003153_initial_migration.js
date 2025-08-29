@@ -15,8 +15,8 @@ exports.up = async function(knex) {
     t.timestamp('last_weekly_review')
   })
   await knex.schema
-    .createTable('stupf', (t) => {
-      t.increments('stupf_id')
+    .createTable('inbox', (t) => {
+      t.increments('item_id')
       t.timestamp('created_at', { precision: 6 }).defaultTo(knex.fn.now(6));
       t.uuid('associated_user').notNullable().references('users.user_id')
       t.string('content').notNullable()
@@ -34,7 +34,7 @@ exports.up = async function(knex) {
       t.time('due_time')
       t.time('start_time')
       t.time('end_time')
-      t.boolean('complete').defaultTo('false')
+      t.timestamp('complete')
   })
   await knex.schema
     .createTable('contexts', (t) => {
@@ -50,26 +50,30 @@ exports.up = async function(knex) {
       t.string('content')
       t.uuid('associated_user').notNullable().references('users.user_id')
       t.integer('next_actions_context_id').references('contexts.context_id')
-      t.integer('linked_project_id').references('projects.project_id')
       t.date('due_date')
       t.date('start_date')
       t.date('end_date')
       t.time('due_time')
       t.time('start_time')
       t.time('end_time')
-      t.boolean('complete')
+      t.timestamp('complete')
   })
+  await knex.schema
+    .createTable('projects_next_actions', (t) => {
+      t.integer('project_id').references('projects.project_id').notNullable()
+      t.integer('next_action_id').references('next_actions.next_action_id').notNullable()
+    })
   await knex.schema
     .createTable('next_actions_contexts', (t) => {
       t.integer('context_id').references('contexts.context_id')
-      t.integer('next_actions_id').references('next_actions.next_action_id')
+      t.integer('next_action_id').references('next_actions.next_action_id')
     })
   await knex.schema
     .createTable('someday_maybe', (t) => {
       t.uuid('associated_user').notNullable().references('users.user_id')
       t.timestamp('created_at', { precision: 6 }).defaultTo(knex.fn.now(6));
       t.string('content')
-      t.boolean('complete')
+      t.timestamp('complete')
     })
 };
 
@@ -78,10 +82,12 @@ exports.up = async function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = async function(knex) {
-  await knex.schema.dropTableIfExists('someday_maybe')
-  await knex.schema.dropTableIfExists('next_actions')
   await knex.schema.dropTableIfExists('next_actions_contexts')
+  await knex.schema.dropTableIfExists('projects_next_actions')
+  await knex.schema.dropTableIfExists('next_actions')
+  await knex.schema.dropTableIfExists('inbox')
   await knex.schema.dropTableIfExists('projects')
-  await knex.schema.dropTableIfExists('stupf')
+  await knex.schema.dropTableIfExists('contexts')
+  await knex.schema.dropTableIfExists('someday_maybe')
   await knex.schema.dropTableIfExists('users')
 };
