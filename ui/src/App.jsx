@@ -1,5 +1,5 @@
 import './index.css'
-import { useState, createContext } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { motion } from 'motion/react'
 import { Link, Routes, Route } from 'react-router-dom'
 import Home from './Home'
