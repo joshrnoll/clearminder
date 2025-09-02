@@ -1,5 +1,5 @@
 {
-  "name": "stupf-api",
+  "name": "clearminder-api",
   "private": true,
   "version": "1.0.0",
   "description": "Backend API for \"ClearMinder\" -- a To-Do app based on GTD principles",

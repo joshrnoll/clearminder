@@ -1,5 +1,5 @@
 {
-  "name": "stupf-server",
+  "name": "clearminder-frontend",
   "private": true,
   "version": "1.0.0",
   "description": "Frontend for \"ClearMinder\" -- a To-Do app based on GTD principles",

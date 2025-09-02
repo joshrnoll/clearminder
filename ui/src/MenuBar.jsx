@@ -21,7 +21,7 @@ export default function MenuBar() {
           >
 
             <div className="self-end pt-3 pb-3 m-3 text-center transform transition duration-250 ease-in-out hover:scale-110 hover:cursor-pointer hover:">
-              <Link to="/add-stupf">
+              <Link to="/add-inbox">
                 <MdAddCircle size={30}/>
               </Link>
             </div>

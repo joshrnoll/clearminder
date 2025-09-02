@@ -9,7 +9,7 @@ import NextActionsList from './NextActionsList'
 import ProjectsList from './ProjectsList'
 import NewContextForm from './NewContextForm'
 import Calendar from './Calendar'
-import AddStupf from './AddStupf'
+import AddToInbox from './AddToInbox'
 import NewSomedayMaybeForm from './NewSomedayMaybeForm'
 import SomedayMaybeList from './SomedayMaybeList'
 import LoginPage from './LoginPage'
@@ -20,7 +20,7 @@ export default function App() {
 
   const [loggedInUser, setLoggedInUser] = useState(JSON.parse(sessionStorage.getItem("loggedInUser")))
   const [userWelcomed, setUserWelcomed] = useState(false)
-  const [stupf, setStupf] = useState([])
+  const [inbox, setInbox] = useState([])
   const [nextActions, setNextActions] = useState([])
   const [nextActionsContexts, setNextActionsContexts] = useState([])
   const [projects, setProjects] = useState([])
@@ -33,6 +33,7 @@ export default function App() {
   },[loggedInUser])
 
   if (loggedInUser){
+    console.log()
     return (
       <>
         {!userWelcomed &&
@@ -62,14 +63,14 @@ export default function App() {
 
         <Routes>
           <Route path="/home/*" element={
-            <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, stupf, nextActions }}>
+            <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, inbox, nextActions }}>
               <Home></Home>
             </AppContext>
           }></Route>
 
-          <Route path="/add-stupf" element={
-            <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, setStupf }}>
-              <AddStupf></AddStupf>
+          <Route path="/add-inbox" element={
+            <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, setInbox }}>
+              <AddToInbox></AddToInbox>
             </AppContext>
           }></Route>
 
