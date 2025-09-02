@@ -9,7 +9,7 @@ exports.up = async function(knex) {
     t.timestamp('created_at', { precision: 6 }).defaultTo(knex.fn.now(6));
     t.string('first_name')
     t.string('last_name')
-    t.string('username').notNullable()
+    t.string('username').notNullable().unique()
     t.string('password').notNullable()
     t.string('email').notNullable()
     t.timestamp('last_weekly_review')

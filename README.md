@@ -4,55 +4,28 @@
 
 #### A to-do app built on [GTD Principals](https://gettingthingsdone.com/).
 
-# Frontend
+## Set Up Development Environment
 
-## Develop Locally
-
-```
-npm install && npm run dev
-```
-
-## Building from source
-
-1. Build app with vite
+1. Create a ```.env``` file:
 
 ```
-npm run build
+cp .env.example .env
 ```
 
-2. Rebuild the docker image
+2. Bring up the dev postgres container:
 
 ```
-docker built . -t <tag-name>
+cd api/dev-pg-compose && docker compose --env-file ../../.env up -d
 ```
 
-# Backend
-The backend runs on express and postgres. To build a development environment:
-
-1. Install dependencies:
+3. Start the API server:
 
 ```
-npm install
+cd ../ && npm install && npm run dev
 ```
 
-2. Create a .env file in the root of the api folder with the following values (adjust as desired):
+4. Start the frontend. Open a *second terminal* window and run:
 
 ```
-DEV_DB_NAME=stupf
-DEV_DB_HOST=localhost
-DEV_DB_PORT=5432
-DEV_DB_USER=my-db-user
-DEV_DB_PASSWORD=my-password
-```
-
-3. Bring up the dev postgres container:
-
-```
-cd dev-pg-compose && docker compose --env-file ../.env up -d
-```
-
-4. Run the api server with nodemon:
-
-```
-npm run dev
+cd ui && npm install && npm run dev
 ```

@@ -13,6 +13,7 @@ dist-ssr
 *.local
 dev-pg-data/
 .env
+testcreds.txt
 
 # Editor directories and files
 .vscode/*

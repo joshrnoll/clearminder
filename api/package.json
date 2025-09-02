@@ -2,23 +2,27 @@
   "name": "stupf-api",
   "private": true,
   "version": "1.0.0",
-  "description": "Backend API for \"Stupf\" -- a To-Do app based on GTD principles",
+  "description": "Backend API for \"ClearMinder\" -- a To-Do app based on GTD principles",
   "license": "GPL",
   "author": "Josh Noll",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshrnoll/stupf-api.git"
+    "url": "git+https://github.com/joshrnoll/clearminder.git"
   },
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node --env-file=../.env server.js",
+    "dev": "nodemon --env-file=../.env server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
     "pg": "^8.16.3"
   },
