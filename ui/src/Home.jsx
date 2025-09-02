@@ -14,7 +14,7 @@ function Home() {
     return currentDate
   }
 
-  const { stupf, nextActions } = useContext(AppContext)
+  const { inbox, nextActions } = useContext(AppContext)
   return (
     <>
       <div id="homeContainer" className="grid grid-cols-3">
@@ -32,9 +32,9 @@ function Home() {
           <h2 className="flex justify-center text-[32pt] font-bold">Inbox</h2>
 
           <ul>
-            {stupf.length === 0 && <p className="flex justify-center italic">Your "in" is empty!</p>}
+            {inbox.length === 0 && <p className="flex justify-center italic">Your "in" is empty!</p>}
 
-            {stupf.map((item) => {
+            {inbox.map((item) => {
               return <li className="flex justify-center italic">{item}</li>
             })}
           </ul>
