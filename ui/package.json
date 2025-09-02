@@ -2,12 +2,12 @@
   "name": "stupf-server",
   "private": true,
   "version": "1.0.0",
-  "description": "Frontend for \"Stupf\" -- a To-Do app based on GTD principles",
+  "description": "Frontend for \"ClearMinder\" -- a To-Do app based on GTD principles",
   "license": "GPL",
   "author": "Josh Noll",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshrnoll/stupf-api.git"
+    "url": "git+https://github.com/joshrnoll/clearminder.git"
   },
   "type": "module",
   "scripts": {
