@@ -1,6 +1,6 @@
 import { apiUrl } from './constants.js'
 
-export async function getTutorialStatus(){
+export function getTutorialStatus(){
   return fetch(`${apiUrl}/user/tutorial-complete`, { credentials: "include" })
   .then(res => {
     if (!res.ok){

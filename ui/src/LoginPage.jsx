@@ -1,9 +1,11 @@
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from './App'
 import { apiUrl } from '../utils/constants.js'
 
 export default function LoginPage(){
 
+  const navigate = useNavigate()
   const { setLoggedInUser } = useContext(AppContext)
 
   const handleSubmit = (e) => {
@@ -42,6 +44,7 @@ export default function LoginPage(){
     .then(data => {
       if(data){
         setLoggedInUser(data)
+        navigate('/')
       }
       else{
         setLoggedInUser(null)
