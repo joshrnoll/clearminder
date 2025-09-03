@@ -1,12 +1,25 @@
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from './App'
+import { apiUrl } from '../utils/constants.js'
 
 export default function LoginPage(){
 
+  const navigate = useNavigate()
   const { setLoggedInUser } = useContext(AppContext)
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const password = formData.get("password")
+    const username = formData.get("username")
+
+    // Authenticate user via API
+    authenticateUser(username, password)
+  }
+
   function authenticateUser(username, password){
-    fetch(`${import.meta.env.VITE_API_PROTO}://${import.meta.env.VITE_API_HOST}:${import.meta.env.VITE_API_PORT}/login`, {
+    fetch(`${apiUrl}/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -16,9 +29,7 @@ export default function LoginPage(){
     })
     .then((res) => {
       if(res.status === 200){
-        setLoggedInUser({
-          "username": username
-        })
+        return res.json()
       }
       else if(res.status === 401){
         alert('Login failed')
@@ -30,19 +41,16 @@ export default function LoginPage(){
         console.log(`Something went wrong:\n${res}`)
       }
     })
+    .then(data => {
+      if(data){
+        setLoggedInUser(data)
+        navigate('/')
+      }
+      else{
+        setLoggedInUser(null)
+      }
+    })
     .catch(err => console.error(`Error received from the API server:\n${err}`))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    const password = formData.get("password")
-    const username = formData.get("username")
-
-    // Authenticate user via API
-    authenticateUser(username, password)
-
-    // If true, setLoggedInUser. If false, display failed login
   }
 
   return(

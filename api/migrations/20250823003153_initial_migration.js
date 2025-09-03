@@ -13,6 +13,7 @@ exports.up = async function(knex) {
     t.string('password').notNullable()
     t.string('email').notNullable()
     t.timestamp('last_weekly_review')
+    t.boolean('tutorial_complete').defaultTo(false)
   })
   await knex.schema
     .createTable('inbox', (t) => {
