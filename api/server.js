@@ -5,6 +5,7 @@ const app = express()
 const port = 3001
 const loginRoutes = require('./routes/login.js')
 const userRoutes = require('./routes/user.js')
+const inboxRoutes = require('./routes/inbox.js')
 const nextActionsRoutes = require('./routes/nextActions.js')
 const cors = require('cors')
 
@@ -46,6 +47,7 @@ const authCheck = (req, res, next) => {
 // Endpoints
 app.use('/login', loginRoutes)
 app.use('/user', authCheck, userRoutes)
+app.use('/inbox', authCheck, inboxRoutes)
 app.use('/next-actions', authCheck, nextActionsRoutes)
 
 
