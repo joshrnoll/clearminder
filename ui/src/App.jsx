@@ -64,7 +64,7 @@ export default function App() {
         }></Route>
 
         <Route path="/home/*" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, inbox, nextActions }}>
+          <AppContext value={{ loggedInUser, menuOpened, setMenuOpened, nextActionsContexts, inbox, nextActions }}>
             <Home></Home>
           </AppContext>
         }></Route>
