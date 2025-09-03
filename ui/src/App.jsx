@@ -31,13 +31,20 @@ export default function App() {
   const [somedayMaybe, setSomedayMaybe] = useState([])
   const [menuOpened, setMenuOpened] = useState(false)
 
+  useEffect(() => {
+    api.getInbox().then(inboxData => setInbox(inboxData))
+  }, [])
 
   useEffect(() => {
     if (!loggedInUser){
       navigate('/login')
     }
-    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
-  },[loggedInUser])
+    else{
+      // Set loggedInUser in local storage and get user's data from DB via API
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
+      api.getInbox().then(inboxData => setInbox(inboxData))
+    }
+  },[loggedInUser, navigate])
 
   api.getTutorialStatus().then(status => setTutorialComplete(status))
 
