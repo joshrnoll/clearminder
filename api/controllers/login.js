@@ -38,7 +38,7 @@ exports.authenticateUser = (req, res) => {
               signed: true,
               domain: process.env.NODE_ENV === 'production' ? process.env.DOMAIN : 'localhost'
             })
-            res.status(200).send('Login successful')
+            res.status(200).send(userData)
           }
           else{
             res.status(401).send('Login failed')

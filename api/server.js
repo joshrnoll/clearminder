@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const app = express()
 const port = 3001
 const loginRoutes = require('./routes/login.js')
-const userRoutes = require('./routes/users.js')
+const userRoutes = require('./routes/user.js')
 const nextActionsRoutes = require('./routes/nextActions.js')
 const cors = require('cors')
 
@@ -28,24 +28,24 @@ const authCheck = (req, res, next) => {
   }
   else{
     try {
-      req.body = jwt.verify(req.signedCookies.authToken, process.env.JWT_SECRET)
-      let now = Date.now()
-      if(req.body.exp > now){
-        res.status(403).send('Token expired. Please log in again.')
-      }
-      else{
-        next()
-      }
+      req.body = jwt.verify(req.signedCookies.authToken, process.env.JWT_SECRET);
+      next();
     }
-    catch (err){
-      res.status(401).send(`ERR: Invalid token\n${err}`)
+    catch (error) {
+      if (error.name === 'TokenExpiredError') {
+        res.status(403).send('Token expired. Please log in again.');
+      } else if (error.name === 'JsonWebTokenError') {
+        res.status(403).send('Invalid token.');
+      } else {
+        res.status(500).send('Token verification failed.');
+      }
     }
   }
 }
 
 // Endpoints
-app.use('/user', userRoutes)
 app.use('/login', loginRoutes)
+app.use('/user', authCheck, userRoutes)
 app.use('/next-actions', authCheck, nextActionsRoutes)
 
 

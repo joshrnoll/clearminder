@@ -1,4 +1,5 @@
 import './index.css'
+import * as api from '../utils/api.js'
 import { useState, useEffect, createContext } from 'react'
 import { motion } from 'motion/react'
 import { Link, Routes, Route } from 'react-router-dom'
@@ -18,8 +19,8 @@ export const AppContext = createContext()
 
 export default function App() {
 
-  const [loggedInUser, setLoggedInUser] = useState(JSON.parse(sessionStorage.getItem("loggedInUser")))
-  const [userWelcomed, setUserWelcomed] = useState(false)
+  const [loggedInUser, setLoggedInUser] = useState(JSON.parse(localStorage.getItem("loggedInUser")))
+  const [tutorialComplete, setTutorialComplete] = useState(api.getTutorialStatus() || false)
   const [inbox, setInbox] = useState([])
   const [nextActions, setNextActions] = useState([])
   const [nextActionsContexts, setNextActionsContexts] = useState([])
@@ -28,15 +29,21 @@ export default function App() {
   const [menuOpened, setMenuOpened] = useState(false)
 
   useEffect(() => {
-    console.log(loggedInUser)
-    sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
+
+    // if(loggedInUser){
+    //   setTutorialComplete(api.getTutorialStatus())
+    // }
+
   },[loggedInUser])
 
+  console.log(api.getTutorialStatus())
+
+  console.log(tutorialComplete)
   if (loggedInUser){
-    console.log()
     return (
       <>
-        {!userWelcomed &&
+        {!tutorialComplete &&
           <>
             <motion.h1
               initial={{ scale: 0 }} animate={{ scale: 1 }}
@@ -54,7 +61,13 @@ export default function App() {
               <motion.button
                 initial={{ scale: 0 }} animate={{ scale: 1 }}
                 className="text-[24pt] p-3 mt-3 btn-primary rounded-3xl"
-                onClick={() => setUserWelcomed(true)}
+                onClick={() => {
+                  api.setTutorialStatus(true)
+                  .then(status => {
+                    console.log(status)
+                    setTutorialComplete(status)
+                  })
+                }}
               >Get Started
               </motion.button>
             </Link>

@@ -1,16 +1,9 @@
 const express = require('express')
-const db = require('../db')
 const router = express.Router()
 const usersCtrl = require('../controllers/users.js')
 
-// Create
+router.get('/tutorial-complete', usersCtrl.getTutorialComplete)
 
-
-// Read
-router.get('/all', usersCtrl.getAllUsers)
-
-// TODO: Update
-
-// TODO: Delete
+router.patch('/tutorial-complete/:value', usersCtrl.setTutorialComplete)
 
 module.exports = router
