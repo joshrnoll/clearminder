@@ -56,7 +56,8 @@ export default function LoginPage(){
   return(
     <>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
-        <h1 className="m-1">Log In to ClearMinder</h1>
+        <h1 className="m-1 text-[32pt] font-bold">Log In to ClearMinder</h1>
+        <img src="/favicon/android-chrome-512x512.png" className="m-3 size-50 rounded-3xl"/>
         <input
           type="text" name="username"
           placeholder="Username"
