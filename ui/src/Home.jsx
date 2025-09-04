@@ -66,13 +66,7 @@ function Home() {
             <h2 className="flex justify-center text-[24pt] font-bold">For Today</h2>
 
             <ul>
-              {nextActions.length === 0 && <p className="flex justify-center italic">Nothing for today!</p>}
-
-              {nextActions.length > 0 && nextActions.map((item) => {
-                if (item.dueDate && item.dueDate === today()) {
-                  return <li className="flex justify-center italic">{item.name}</li>
-                }
-              })}
+              <li><span className="font-bold italic">Future Implementation:</span> display items that are due on or after today</li>
             </ul>
 
           </motion.div>

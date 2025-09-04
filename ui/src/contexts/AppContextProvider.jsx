@@ -19,13 +19,19 @@ export function AppContextProvider({ children }){
 
   useEffect(() => {
     if (!loggedInUser) {
-      api.userLogout()
+      api.userLogout() // Call /auth/logout API endpoint to remove session cookie and clear local storage
       navigate('/login')
     }
     else {
+      // Set user's login data
       api.getTutorialStatus().then(status => setTutorialComplete(status))
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
+
+      // Get user's content from DB
       api.getInbox().then(inboxData => setInbox(inboxData))
+      api.getNextActions().then(nextActionsData => setNextActions(nextActionsData))
+      api.getProjects().then(projectsData => setProjects(projectsData))
+      api.getSomedayMaybe().then(somedayMaybeData => setSomedayMaybe(somedayMaybeData))
     }
   }, [loggedInUser, navigate])
 

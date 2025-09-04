@@ -3,11 +3,12 @@ import { useContext } from 'react'
 import { AppContext } from './contexts/AppContext'
 import MenuBar from './MenuBar'
 import ListHeader from './blocks/ListHeader'
+import SomedayMaybeListItem from './blocks/SomedayMaybeListItem'
 
 export default function SomedayMaybeList(){
 
   const { somedayMaybe } = useContext(AppContext)
-
+  
   return (
     <>
       <div className="flex">
@@ -23,8 +24,9 @@ export default function SomedayMaybeList(){
           <ListHeader heading="Someday-Maybe List" route="/new-someday-maybe"/>
 
           <ul className="m-3 text-[18pt]">
-            {somedayMaybe.map((item) => {
-              return <li>{item.name}</li>
+            {somedayMaybe.map(somedayMaybeItem => {
+              console.log(somedayMaybeItem)
+              return <SomedayMaybeListItem somedayMaybeItem={ somedayMaybeItem } />
             })}
           </ul>
 

@@ -19,7 +19,7 @@ export default function LoginPage(){
     .then(data => {
       if(data){
         setLoggedInUser(data)
-        navigate('/')
+        navigate('/home')
       }
       else{
         setLoggedInUser(null)

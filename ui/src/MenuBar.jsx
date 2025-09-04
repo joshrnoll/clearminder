@@ -18,7 +18,7 @@ export default function MenuBar() {
         <motion.nav initial={{ scale: 0 }} animate={{ scale: 1 }}>
           <div
             id="navBar"
-            className="w-[15vw] h-[100vh] flex flex-col bg-site-background"
+            className="w-[15vw] h-[100vh] flex flex-col items-center bg-site-background"
           >
 
             <div className="self-end pt-3 pb-3 m-3 text-center transform transition duration-250 ease-in-out hover:scale-110 hover:cursor-pointer hover:">
@@ -51,7 +51,7 @@ export default function MenuBar() {
               </Link>
             </div>
 
-            <hr className="m-3"></hr>
+            <hr className="w-[30%]"></hr>
             <ContextFilter />
 
             <LogoutButton></LogoutButton>

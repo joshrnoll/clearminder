@@ -80,3 +80,24 @@ export function getInbox(){
   .then(data => data)
   .catch(err => console.error(err))
 }
+
+export function getNextActions(){
+  return fetch(`${apiUrl}/next-actions`, { credentials: "include" })
+  .then(res => authCheck(res))
+  .then(data => data)
+  .catch(err => console.error(err))
+}
+
+export function getProjects(){
+  return fetch(`${apiUrl}/projects`, { credentials: "include" })
+  .then(res => authCheck(res))
+  .then(data => data)
+  .catch(err => console.error(err))
+}
+
+export function getSomedayMaybe(){
+  return fetch(`${apiUrl}/someday-maybe`, { credentials: "include" })
+  .then(res => authCheck(res))
+  .then(data => data)
+  .catch(err => console.error(err))
+}

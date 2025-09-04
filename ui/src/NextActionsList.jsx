@@ -45,7 +45,7 @@ export default function NextActionsList() {
 
         <motion.div
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          id="newProjectForm"
+          id="nextActionsList"
           className="flex flex-col items-center gap-2 w-[100%]">
 
           <ListHeader heading="Next Actions List" route="/new-next-action"/>

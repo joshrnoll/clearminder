@@ -4,13 +4,13 @@ import { CiCircleCheck } from 'react-icons/ci'
 import { CiCircleChevRight } from 'react-icons/ci'
 import { CiCircleChevDown } from 'react-icons/ci'
 
-export default function NextActionsListItem({ nextAction }) {
+export default function SomedayMaybeListItem({ somedayMaybeItem }) {
 
-  if (!nextAction){
-    console.error("Component NextActionsListItem must take prop 'nextAction'")
+  if (!somedayMaybeItem){
+    console.error("Component SomedayMaybeListItem must take prop 'somedayMaybe'")
   }
 
-  const { nextActions, setNextActions } = useContext(AppContext)
+  const { somedayMaybe, setSomedayMaybe } = useContext(AppContext)
   const [viewDetails, setViewDetails] = useState(false)
   const iconSize= 30
 
@@ -39,14 +39,10 @@ export default function NextActionsListItem({ nextAction }) {
           onClick={() => {
             alert('This feature is a future implementation')
             // TODO: refactor to call API rather than set state
-            // nextAction.complete = true //
-            // let newArray = nextActions.filter((item) => item.id != nextAction.id)
-            // newArray.push(nextAction)
-            // setNextActions(newArray)
           }}>
           <CiCircleCheck size={iconSize} className="text-[green]" />
         </button>
-        <p>{nextAction?.content}</p>
+        <p>{somedayMaybeItem?.content}</p>
         <button
           className="hover:cursor-pointer"
           onClick={() => viewDetails === false ? setViewDetails(true) : setViewDetails(false)}>
