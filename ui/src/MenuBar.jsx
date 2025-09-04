@@ -21,11 +21,12 @@ export default function MenuBar() {
             className="w-[15vw] h-[100vh] flex flex-col items-center bg-site-background"
           >
 
-            <div className="self-end pt-3 pb-3 m-3 text-center transform transition duration-250 ease-in-out hover:scale-110 hover:cursor-pointer hover:">
+            {/* TODO: Add an 'inbox' button */}
+            {/* <div className="self-end pt-3 pb-3 m-3 text-center transform transition duration-250 ease-in-out hover:scale-110 hover:cursor-pointer hover:">
               <Link to="/add-inbox">
                 <MdAddCircle size={30}/>
               </Link>
-            </div>
+            </div> */}
 
             <div className="pt-3 pb-3 mb-1 text-center transform transition duration-250 ease-in-out hover:scale-110 hover:cursor-pointer">
               <Link to="/next-actions">

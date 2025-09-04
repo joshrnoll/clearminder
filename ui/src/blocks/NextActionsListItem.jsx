@@ -10,7 +10,7 @@ export default function NextActionsListItem({ nextAction }) {
     console.error("Component NextActionsListItem must take prop 'nextAction'")
   }
 
-  const { nextActions, setNextActions } = useContext(AppContext)
+  // const { nextActions, setNextActions } = useContext(AppContext)
   const [viewDetails, setViewDetails] = useState(false)
   const iconSize= 30
 

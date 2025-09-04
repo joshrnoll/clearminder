@@ -101,3 +101,25 @@ export function getSomedayMaybe(){
   .then(data => data)
   .catch(err => console.error(err))
 }
+
+export function addToInbox(content){
+
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
+
+  const newItem = {
+    content: content,
+    user_id: loggedInUser.user_id
+  }
+
+  return fetch(`${apiUrl}/inbox/add`, {
+    credentials: "include",
+    method: "POST",
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newItem)
+  })
+  .then(res => authCheck(res))
+  .then(data => data)
+  .catch(err => console.error(err))
+}
