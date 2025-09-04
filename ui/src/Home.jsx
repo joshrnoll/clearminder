@@ -21,7 +21,7 @@ function Home() {
 
   const { loggedInUser, inbox, nextActions } = useContext(AppContext)
   const navigate = useNavigate()
-  console.log(loggedInUser)
+
   if(loggedInUser){
     return (
       <>

@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import { AppContext } from './App'
 import { BiDockLeft } from 'react-icons/bi'
 import { MdAddCircle } from 'react-icons/md'
+import LogoutButton from './blocks/LogoutButton'
 import ContextFilter from './blocks/ContextFilter'
 
 export default function MenuBar() {
@@ -53,6 +54,7 @@ export default function MenuBar() {
             <hr className="m-3"></hr>
             <ContextFilter />
 
+            <LogoutButton></LogoutButton>
           </div>
         </motion.nav>
       }

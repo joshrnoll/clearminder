@@ -37,6 +37,7 @@ export default function App() {
 
   useEffect(() => {
     if (!loggedInUser){
+      localStorage.setItem("loggedInUser", JSON.stringify(null))
       navigate('/login')
     }
     else{

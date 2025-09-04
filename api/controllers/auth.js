@@ -3,7 +3,7 @@ const db = require('../db.js')
 const jwt = require('jsonwebtoken')
 const jwtSecret = process.env.JWT_SECRET
 
-exports.authenticateUser = (req, res) => {
+exports.userLogin = (req, res) => {
   if(!req.body){
     res.status(400).send('You must supply a body with this request')
   }
@@ -48,5 +48,19 @@ exports.authenticateUser = (req, res) => {
       }
     })
     .catch(err => res.status(500).send(err))
+  }
+}
+
+exports.userLogout = (req, res) => {
+  try{
+    res.clearCookie('authToken')
+    res.status(200).json({ success: "true" })
+  }
+  catch (err) {
+    console.error(`Logout error:\n${err}`)
+    res.status(500).json({
+      success: "false",
+      message: "Something went wrong during logout. Are you already logged out?"
+    })
   }
 }
