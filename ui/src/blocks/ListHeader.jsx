@@ -13,7 +13,7 @@ export default function ListHeader({ heading, route }){
   return (
     <div className="w-[100%] flex justify-center">
       <h1 className="m-3 text-[48pt]">{ heading }</h1>
-      <div className="absolute top-8 right-8 transform transition duration-250 ease-in-out hover:scale-110 hover:cursor-pointer hover:">
+      <div className="absolute top-8 right-8 transform transition duration-250 ease-in-out hover:scale-110 hover:cursor-pointer">
         <Link to={ route }>
           <MdAddCircle size={50} />
         </Link>

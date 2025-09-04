@@ -1,7 +1,12 @@
 const db = require('../db.js')
+const jwt = require('jsonwebtoken')
+const jwtSecret = process.env.JWT_SECRET
 
 exports.getProjects = (req, res) => {
-  db.select('*').from('projects').where({associated_user: req.body.user_id})
+
+  const userData = jwt.verify(req.signedCookies.authToken, jwtSecret)
+
+  db.select('*').from('projects').where({associated_user: userData.user_id})
   .then((data) => res.status(200).send(data))
   .catch((err) => res.status(500).send(err))
 }

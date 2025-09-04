@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import MenuBar from './MenuBar'
 import { AppContext } from './contexts/AppContext'
@@ -7,6 +7,7 @@ import { LuListTodo } from "react-icons/lu";
 import { AiOutlineProject } from "react-icons/ai";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { TbFolderQuestion } from "react-icons/tb";
+import { MdAddCircle } from 'react-icons/md'
 
 function Home() {
 
@@ -35,9 +36,9 @@ function Home() {
             className="flex flex-col content-center flex-wrap gap-2"
           >
 
-            <br />
+            {/* <br /> */}
 
-            <h2 className="flex justify-center text-[32pt] font-bold">Inbox</h2>
+              <h2 className="mt-15 text-[32pt] font-bold">Inbox</h2>
 
             {inbox &&
               <ul>
@@ -71,6 +72,9 @@ function Home() {
 
           </motion.div>
 
+          <Link to="/add-inbox">
+            <MdAddCircle className="btn-top-right" size={50}></MdAddCircle>
+          </Link>
         </div>
       </>
     )

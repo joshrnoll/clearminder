@@ -31,7 +31,7 @@ const authCheck = (req, res, next) => {
   }
   else{
     try {
-      req.body = jwt.verify(req.signedCookies.authToken, process.env.JWT_SECRET);
+      jwt.verify(req.signedCookies.authToken, process.env.JWT_SECRET);
       next();
     }
     catch (error) {

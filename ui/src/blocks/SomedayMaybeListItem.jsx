@@ -10,7 +10,7 @@ export default function SomedayMaybeListItem({ somedayMaybeItem }) {
     console.error("Component SomedayMaybeListItem must take prop 'somedayMaybe'")
   }
 
-  const { somedayMaybe, setSomedayMaybe } = useContext(AppContext)
+  // const { somedayMaybe, setSomedayMaybe } = useContext(AppContext)
   const [viewDetails, setViewDetails] = useState(false)
   const iconSize= 30
 

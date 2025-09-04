@@ -10,7 +10,7 @@ export default function ProjectsListItem({ project }) {
     console.error("Component ProjectsListItem must take prop 'projects'")
   }
 
-  const { projects, setProjects } = useContext(AppContext)
+  // const { projects, setProjects } = useContext(AppContext)
   const [viewDetails, setViewDetails] = useState(false)
   const iconSize= 30
 
