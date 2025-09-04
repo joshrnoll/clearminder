@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { AppContext } from './contexts/AppContext'
 import MenuBar from './MenuBar'
 import ListHeader from './blocks/ListHeader'
+import ProjectsListItem from './blocks/ProjectsListItem'
 
 export default function ProjectsList() {
 
@@ -20,6 +21,11 @@ export default function ProjectsList() {
 
           <ListHeader heading="Projects List" route="/new-project"/>
 
+          <ul>
+            {projects.map((project) => {
+              return <ProjectsListItem project={project}></ProjectsListItem>
+            })}
+          </ul>
         </motion.div>
       </div>
     </>

@@ -7,6 +7,8 @@ const authRoutes = require('./routes/auth.js')
 const userRoutes = require('./routes/user.js')
 const inboxRoutes = require('./routes/inbox.js')
 const nextActionsRoutes = require('./routes/nextActions.js')
+const projectsRoutes = require('./routes/projects.js')
+const somedayMaybeRoutes = require('./routes/someday-maybe.js')
 const cors = require('cors')
 
 const corsOrigins = process.env.CORS_ORIGINS
@@ -49,6 +51,8 @@ app.use('/auth', authRoutes)
 app.use('/user', authCheck, userRoutes)
 app.use('/inbox', authCheck, inboxRoutes)
 app.use('/next-actions', authCheck, nextActionsRoutes)
+app.use('/projects', authCheck, projectsRoutes)
+app.use('/someday-maybe', authCheck, somedayMaybeRoutes)
 
 
 app.get('/', (req, res) => {

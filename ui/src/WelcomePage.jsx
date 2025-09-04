@@ -14,9 +14,8 @@ export default function WelcomePage(){
     if (loggedInUser && tutorialComplete){
       navigate('/home')
     }
-  }, [loggedInUser, tutorialComplete, navigate])
+  }, [])
 
-  console.log(tutorialComplete)
   return(
     !tutorialComplete &&
       <>
