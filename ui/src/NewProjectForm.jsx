@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import { Project } from './classes'
 import MenuBar from './MenuBar'
 import Form from './blocks/Form'

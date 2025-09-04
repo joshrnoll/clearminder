@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { NextAction } from './classes'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import MenuBar from './MenuBar'
 import Form from './blocks/Form'
 

@@ -20,6 +20,43 @@ function authCheck(res){
   }
 }
 
+export function userLogin(username, password){
+  return fetch(`${apiUrl}/auth/login`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username: username, password: password })
+  })
+  .then((res) => {
+    if(res.status === 200){
+      return res.json()
+    }
+    else if(res.status === 401){
+      alert('Login failed')
+    }
+    else if(!res.ok){
+      console.error(`Error while contacting the API server. Received status code of ${res.status}:\n${res}`)
+    }
+    else{
+      console.error(`Something went wrong:\n${res}`)
+    }
+  })
+}
+
+export function userLogout(){
+  return fetch(`${apiUrl}/auth/logout`)
+  .then(res => {
+    if (res.ok){
+      localStorage.removeItem("loggedInUser")
+      return res.json()
+    }
+  })
+  .then(data => data)
+  .catch(err => console.error(err))
+}
+
 export function getTutorialStatus(){
   return fetch(`${apiUrl}/user/tutorial-complete`, { credentials: "include" })
   .then(res => authCheck(res))

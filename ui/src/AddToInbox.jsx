@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { motion } from 'motion/react'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import MenuBar from './MenuBar'
 
 export default function AddToInbox() {

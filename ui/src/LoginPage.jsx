@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AppContext } from './App'
-import { apiUrl } from '../utils/constants.js'
+import { AppContext } from './contexts/AppContext'
+import { userLogin } from '../utils/api.js'
 
 export default function LoginPage(){
 
@@ -15,32 +15,7 @@ export default function LoginPage(){
     const username = formData.get("username")
 
     // Authenticate user via API
-    authenticateUser(username, password)
-  }
-
-  function authenticateUser(username, password){
-    fetch(`${apiUrl}/login`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: username, password: password })
-    })
-    .then((res) => {
-      if(res.status === 200){
-        return res.json()
-      }
-      else if(res.status === 401){
-        alert('Login failed')
-      }
-      else if(!res.ok){
-        console.error(`Error while contacting the API server. Received status code of ${res.status}:\n${res}`)
-      }
-      else{
-        console.log(`Something went wrong:\n${res}`)
-      }
-    })
+    userLogin(username, password)
     .then(data => {
       if(data){
         setLoggedInUser(data)

@@ -1,8 +1,7 @@
 import './index.css'
-import * as api from '../utils/api.js'
-import { useState, useEffect, createContext } from 'react'
 import { motion } from 'motion/react'
-import { Link, Routes, Route, useNavigate } from 'react-router-dom'
+import { Link, Routes, Route } from 'react-router-dom'
+import { AppContextProvider } from './contexts/AppContextProvider.jsx'
 import Home from './Home'
 import WelcomePage from './WelcomePage'
 import NewProjectForm from './NewProjectForm'
@@ -16,119 +15,30 @@ import NewSomedayMaybeForm from './NewSomedayMaybeForm'
 import SomedayMaybeList from './SomedayMaybeList'
 import LoginPage from './LoginPage'
 
-export const AppContext = createContext()
-
 export default function App() {
-
-  const navigate = useNavigate()
-
-  const [loggedInUser, setLoggedInUser] = useState(JSON.parse(localStorage.getItem("loggedInUser")))
-  const [tutorialComplete, setTutorialComplete] = useState(false)
-  const [inbox, setInbox] = useState([])
-  const [nextActions, setNextActions] = useState([])
-  const [nextActionsContexts, setNextActionsContexts] = useState([])
-  const [projects, setProjects] = useState([])
-  const [somedayMaybe, setSomedayMaybe] = useState([])
-  const [menuOpened, setMenuOpened] = useState(false)
-
-  useEffect(() => {
-    api.getInbox().then(inboxData => setInbox(inboxData))
-  }, [])
-
-  useEffect(() => {
-    if (!loggedInUser){
-      navigate('/login')
-    }
-    else{
-      // Set loggedInUser in local storage and get user's data from DB via API
-      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
-      api.getInbox().then(inboxData => setInbox(inboxData))
-    }
-  },[loggedInUser, navigate])
-
-  api.getTutorialStatus().then(status => setTutorialComplete(status))
 
   return (
     <>
-      { loggedInUser &&
-        <AppContext value={{ tutorialComplete, setTutorialComplete }}>
-          <WelcomePage></WelcomePage>
-        </AppContext>
-      }
+      <AppContextProvider>
 
-      <Routes>
-        <Route path="/login" element={
-          <AppContext value={{ loggedInUser, setLoggedInUser }}>
-            <LoginPage />
-          </AppContext>
-        }></Route>
+        <WelcomePage></WelcomePage>
 
-        <Route path="/home/*" element={
-          <AppContext value={{ loggedInUser, menuOpened, setMenuOpened, nextActionsContexts, inbox, nextActions }}>
-            <Home></Home>
-          </AppContext>
-        }></Route>
-
-        <Route path="/add-inbox" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, setInbox }}>
-            <AddToInbox></AddToInbox>
-          </AppContext>
-        }></Route>
-
-        <Route path="/new-project" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, projects, setProjects }}>
-            <NewProjectForm></NewProjectForm>
-          </AppContext>
-        }></Route>
-
-        <Route path="/projects" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, projects, setProjects }}>
-            <ProjectsList></ProjectsList>
-          </AppContext>
-        }></Route>
-
-        <Route path="/new-next-action" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, setNextActionsContexts, nextActions, setNextActions, projects, setProjects }}>
-            <NewNextActionForm></NewNextActionForm>
-          </AppContext>
-        }></Route>
-
-        <Route path="/next-actions" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, nextActions, setNextActions }}>
-            <NextActionsList></NextActionsList>
-          </AppContext>
-        }></Route>
-
-        <Route path="/next-actions/:context" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, nextActions, setNextActions }}>
-            <NextActionsList></NextActionsList>
-          </AppContext>
-        }></Route>
-
-        <Route path="/someday-maybe" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, somedayMaybe}}>
-            <SomedayMaybeList></SomedayMaybeList>
-          </AppContext>
-        }></Route>
-
-        <Route path="/new-someday-maybe" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, setSomedayMaybe}}>
-            <NewSomedayMaybeForm></NewSomedayMaybeForm>
-          </AppContext>
-        }></Route>
-
-        <Route path="/new-context" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, setNextActionsContexts }}>
-            <NewContextForm></NewContextForm>
-          </AppContext>
-        }></Route>
-
-        <Route path="/calendar" element={
-          <AppContext value={{ menuOpened, setMenuOpened, nextActionsContexts, nextActions, projects, setNextActions, setProjects }}>
-            <Calendar></Calendar>
-          </AppContext>
-        }></Route>
-      </Routes>
+        <Routes>
+          <Route path="/login" element={ <LoginPage /> } />
+          <Route path="/home/*" element={ <Home /> } />
+          <Route path="/add-inbox" element={ <AddToInbox /> } />
+          <Route path="/new-project" element={ <NewProjectForm /> } />
+          <Route path="/projects" element={ <ProjectsList /> } />
+          <Route path="/new-next-action" element={ <NewNextActionForm /> } />
+          <Route path="/next-actions" element={ <NextActionsList /> } />
+          <Route path="/next-actions/:context" element={ <NextActionsList /> } />
+          <Route path="/someday-maybe" element={ <SomedayMaybeList /> } />
+          <Route path="/new-someday-maybe" element={ <NewSomedayMaybeForm /> } />
+          <Route path="/new-context" element={ <NewContextForm /> } />
+          <Route path="/calendar" element={ <Calendar /> } />
+        </Routes>
+        
+      </AppContextProvider>
     </>
   )
 }
