@@ -9,7 +9,7 @@ export function AppContextProvider({ children }){
   const [loggedInUser, setLoggedInUser] = useState(
     JSON.parse(localStorage.getItem("loggedInUser"))
   )
-  const [tutorialComplete, setTutorialComplete] = useState(false)
+  const [tutorialComplete, setTutorialComplete] = useState(true)
   const [inbox, setInbox] = useState([])
   const [nextActions, setNextActions] = useState([])
   const [nextActionsContexts, setNextActionsContexts] = useState([])
@@ -19,16 +19,15 @@ export function AppContextProvider({ children }){
 
   useEffect(() => {
     if (!loggedInUser) {
+      api.userLogout()
       navigate('/login')
-    } else {
+    }
+    else {
+      api.getTutorialStatus().then(status => setTutorialComplete(status))
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
       api.getInbox().then(inboxData => setInbox(inboxData))
     }
   }, [loggedInUser, navigate])
-
-  useEffect(() => {
-    api.getTutorialStatus().then(status => setTutorialComplete(status))
-  }, [])
 
   const value = {
     loggedInUser,

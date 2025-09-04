@@ -37,6 +37,7 @@ export default function App() {
           <Route path="/new-context" element={ <NewContextForm /> } />
           <Route path="/calendar" element={ <Calendar /> } />
         </Routes>
+        
       </AppContextProvider>
     </>
   )
