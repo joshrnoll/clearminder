@@ -20,82 +20,24 @@ export default function App() {
   return (
     <>
       <AppContextProvider>
+
         <WelcomePage></WelcomePage>
+
+        <Routes>
+          <Route path="/login" element={ <LoginPage /> } />
+          <Route path="/home/*" element={ <Home /> } />
+          <Route path="/add-inbox" element={ <AddToInbox /> } />
+          <Route path="/new-project" element={ <NewProjectForm /> } />
+          <Route path="/projects" element={ <ProjectsList /> } />
+          <Route path="/new-next-action" element={ <NewNextActionForm /> } />
+          <Route path="/next-actions" element={ <NextActionsList /> } />
+          <Route path="/next-actions/:context" element={ <NextActionsList /> } />
+          <Route path="/someday-maybe" element={ <SomedayMaybeList /> } />
+          <Route path="/new-someday-maybe" element={ <NewSomedayMaybeForm /> } />
+          <Route path="/new-context" element={ <NewContextForm /> } />
+          <Route path="/calendar" element={ <Calendar /> } />
+        </Routes>
       </AppContextProvider>
-
-      <Routes>
-        <Route path="/login" element={
-          <AppContextProvider>
-            <LoginPage />
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/home/*" element={
-          <AppContextProvider>
-            <Home></Home>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/add-inbox" element={
-          <AppContextProvider>
-            <AddToInbox></AddToInbox>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/new-project" element={
-          <AppContextProvider>
-            <NewProjectForm></NewProjectForm>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/projects" element={
-          <AppContextProvider>
-            <ProjectsList></ProjectsList>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/new-next-action" element={
-          <AppContextProvider>
-            <NewNextActionForm></NewNextActionForm>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/next-actions" element={
-          <AppContextProvider>
-            <NextActionsList></NextActionsList>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/next-actions/:context" element={
-          <AppContextProvider>
-            <NextActionsList></NextActionsList>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/someday-maybe" element={
-          <AppContextProvider>
-            <SomedayMaybeList></SomedayMaybeList>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/new-someday-maybe" element={
-          <AppContextProvider>
-            <NewSomedayMaybeForm></NewSomedayMaybeForm>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/new-context" element={
-          <AppContextProvider>
-            <NewContextForm></NewContextForm>
-          </AppContextProvider>
-        }></Route>
-
-        <Route path="/calendar" element={
-          <AppContextProvider>
-            <Calendar></Calendar>
-          </AppContextProvider>
-        }></Route>
-      </Routes>
     </>
   )
 }
