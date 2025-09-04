@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { AppContext } from '../App'
+import { AppContext } from '../contexts/AppContext'
 import { HiHashtag } from 'react-icons/hi'
 
 export default function ContextFilter() {

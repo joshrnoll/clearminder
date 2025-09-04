@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import { userLogin } from '../utils/api.js'
 
 export default function LoginPage(){

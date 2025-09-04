@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import MenuBar from './MenuBar'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import { LuListTodo } from "react-icons/lu";
 import { AiOutlineProject } from "react-icons/ai";
 import { FaRegTimesCircle } from "react-icons/fa";

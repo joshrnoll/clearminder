@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { motion } from 'motion/react'
 import { Link } from 'react-router-dom'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import MenuBar from './MenuBar'
 
 

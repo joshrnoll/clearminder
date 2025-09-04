@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { AppContext } from '../App'
+import { AppContext } from '../contexts/AppContext'
 import { CiCircleCheck } from 'react-icons/ci'
 import { CiCircleChevRight } from 'react-icons/ci'
 import { CiCircleChevDown } from 'react-icons/ci'

@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { useContext } from 'react'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import MenuBar from './MenuBar'
 import ListHeader from './blocks/ListHeader'
 import NextActionsListItem from './blocks/NextActionsListItem'

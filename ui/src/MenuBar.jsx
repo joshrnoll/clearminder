@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import { BiDockLeft } from 'react-icons/bi'
 import { MdAddCircle } from 'react-icons/md'
 import LogoutButton from './blocks/LogoutButton'

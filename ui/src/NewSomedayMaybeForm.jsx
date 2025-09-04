@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { AppContext } from './App'
+import { AppContext } from './contexts/AppContext'
 import { motion } from 'motion/react'
 import MenuBar from './MenuBar'
 import { SomedayMaybe } from './classes.js'
