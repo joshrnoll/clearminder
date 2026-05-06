@@ -1,6 +1,5 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
-const jwt = require('jsonwebtoken')
 const app = express()
 const port = 3001
 const authRoutes = require('./routes/auth.js')
@@ -10,6 +9,7 @@ const nextActionsRoutes = require('./routes/nextActions.js')
 const projectsRoutes = require('./routes/projects.js')
 const somedayMaybeRoutes = require('./routes/someday-maybe.js')
 const cors = require('cors')
+const authCheck = require('./middleware/authCheck.js')
 
 const corsOrigins = process.env.CORS_ORIGINS
 const allowedMethods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
@@ -23,28 +23,6 @@ const corsOpts = {
 app.use(express.json())
 app.use(cors(corsOpts))
 app.use(cookieParser(process.env.COOKIE_SECRET))
-
-// Authentication check
-const authCheck = (req, res, next) => {
-  if(!req.signedCookies.authToken){
-    res.status(401).send('No authToken found. Please log in.')
-  }
-  else{
-    try {
-      jwt.verify(req.signedCookies.authToken, process.env.JWT_SECRET);
-      next();
-    }
-    catch (error) {
-      if (error.name === 'TokenExpiredError') {
-        res.status(403).send('Token expired. Please log in again.');
-      } else if (error.name === 'JsonWebTokenError') {
-        res.status(403).send('Invalid token.');
-      } else {
-        res.status(500).send('Token verification failed.');
-      }
-    }
-  }
-}
 
 // Endpoints
 app.use('/auth', authRoutes)
