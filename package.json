@@ -1,5 +1,11 @@
 {
   "dependencies": {
     "bcrypt": "^6.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  },
+  "scripts": {
+    "test:e2e": "playwright test"
   }
 }
