@@ -1,27 +1,57 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# Build outputs
+/bin/
+/dist/
+/tmp/
+/out/
+/build/
 
-node_modules
-dist
-dist-ssr
+# Go
+*.test
+*.out
+coverage.*
+*.cover
+go.work.sum
+
+# Node / web
+node_modules/
+.vite/
 *.local
-dev-pg-data/
-.env
-testcreds.txt
+.parcel-cache/
+.next/
+.nuxt/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Editor / OS
+.vscode/
+.idea/
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+*.swp
+*.swo
+*.swn
+*~
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Runtime data (when developing outside a container)
+/data/
+/var/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Backup artifacts
+*.bak
+*.backup
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Generated OpenAPI clients
+/internal/api/openapi.gen.go.bak
