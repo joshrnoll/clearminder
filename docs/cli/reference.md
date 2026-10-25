@@ -19,7 +19,7 @@ Commands that read or change items require a configured URL and a login for that
 
 ## Output
 
-`capture` prints the new item's UUID and a newline on standard output. Other commands use human-readable output. `list` and `inbox` display tables unless you pass `--json`. Diagnostics go to standard error.
+`capture` and successful `clarify` each print one UUID and a newline on standard output. Other commands use human-readable output. `list` and `inbox` display tables unless you pass `--json`. Diagnostics go to standard error.
 
 ## Capture and inspect
 
@@ -38,7 +38,7 @@ Empty captured text is an error. `capture` never reads standard input unless its
 
 `clearminder clarify ID` opens the wizard for that inbox item without the finder. `clearminder clarify ID DECISION_FLAG` starts the wizard at the selected decision. It prompts for any required fields and asks for confirmation. These forms require a terminal. Only one decision flag is allowed, and it requires an ID. Do not combine a decision flag with `--as` or field options.
 
-`clearminder clarify ID --as KIND [OPTIONS]` makes a complete decision without prompts. It requires an ID and all fields listed for that kind. A successful clarification removes the item from the inbox. A failed or canceled clarification leaves it there.
+`clearminder clarify ID --as KIND [OPTIONS]` makes a complete decision without prompts. It requires an ID and all fields listed for that kind. A successful clarification removes the item from the inbox and prints its UUID, even when it creates a next action for a project. A failed or canceled clarification leaves the item there.
 
 The required and optional field options in this table apply to `--as`. The wizard asks for these fields when you use a decision flag.
 

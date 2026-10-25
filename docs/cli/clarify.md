@@ -12,7 +12,7 @@ If you already have an item's UUID, open its wizard directly:
 clearminder clarify 2b04eb04-0b68-46d0-bbb2-44749578a50c
 ```
 
-The wizard asks what the item means, whether it needs action, and where its reminder belongs. If you cancel before confirming, the item stays in the inbox. One confirmation saves the decision and removes the item from the inbox.
+The wizard asks what the item means, whether it needs action, and where its reminder belongs. If you cancel before confirming, the item stays in the inbox. One confirmation saves the decision, removes the item from the inbox, and prints its UUID.
 
 ## Choose a place for the item
 
