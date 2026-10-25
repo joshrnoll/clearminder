@@ -42,7 +42,7 @@ Capture a thought, turn it into a project and a next action, then find that acti
    clearminder clarify
    ```
 
-   Type `passport` in the fuzzy finder. Select `Renew passport` and press Enter. Choose **Project** in the wizard. Enter `Passport renewed` as the outcome and `Check renewal requirements` as the first next action. Set its context to `computer`. The CLI confirms the project and the action:
+   Type `passport` in the fuzzy finder. Select `Renew passport` and press Enter. Choose **Project** in the wizard. Enter `Passport renewed` as the outcome and `Check renewal requirements` as the first next action. Set its context to `computer` and confirm the decision. The CLI prints the saved project and new next action, each with its UUID:
 
    ```text
    Project 2b04eb04-0b68-46d0-bbb2-44749578a50c: Passport renewed
