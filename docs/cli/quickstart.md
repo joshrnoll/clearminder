@@ -51,7 +51,7 @@ Capture a thought, turn it into a project and a next action, then find that acti
 5. Find the action.
 
    ```sh
-   clearminder list next --context computer
+   clearminder list next-actions --context computer
    ```
 
    The table includes the action and its project:

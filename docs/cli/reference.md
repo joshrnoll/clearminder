@@ -57,11 +57,11 @@ For `project`, the captured UUID becomes the project UUID and the new action get
 
 ## List and organize
 
-`clearminder list KIND [--json]` accepts `inbox`, `next`, `projects`, `waiting`, `calendar`, `someday`, `reference`, `done`, or `trash`. `clearminder inbox` is the short form of `clearminder list inbox`.
+`clearminder list KIND [--json]` accepts `inbox`, `next-actions`, `projects`, `waiting`, `calendar`, `someday`, `reference`, `done`, or `trash`. `clearminder inbox` is the short form of `clearminder list inbox`.
 
 By default, each list is a table with a header row. The first column is `ID`; other columns show the fields relevant to that list. Pass `--json` after the list name to get an array of item objects instead. `clearminder inbox --json` has the same output as `clearminder list inbox --json`. An empty list succeeds, with a header but no item rows in table mode and `[]` in JSON mode.
 
-Each JSON item has `id`, `kind`, and `text`. Other fields appear when they apply, including `action`, `outcome`, `context`, `project_id`, `person`, `on`, `at`, and `follow_up`. Field names use snake case. For example, `clearminder list next --json` can return:
+Each JSON item has `id`, `kind`, and `text`. Other fields appear when they apply, including `action`, `outcome`, `context`, `project_id`, `person`, `on`, `at`, and `follow_up`. Field names use snake case. For example, `clearminder list next-actions --json` can return:
 
 ```json
 [
@@ -78,8 +78,8 @@ Each JSON item has `id`, `kind`, and `text`. Other fields appear when they apply
 
 | Option | Applies to | Result |
 | --- | --- | --- |
-| `--context NAME` | `list next` | Show actions with that context. |
-| `--in-project ID` | `list next`, `list waiting`, `list calendar` | Show items attached to that project. |
+| `--context NAME` | `list next-actions` | Show actions with that context. |
+| `--in-project ID` | `list next-actions`, `list waiting`, `list calendar` | Show items attached to that project. |
 | `--on DATE` | `list calendar` | Show items on that date. |
 
 `clearminder organize ID OPTIONS` changes an item that has left the inbox. Supply at least one option. The item keeps its ID. You can change its action with `--action TEXT`, a project's outcome with `--outcome TEXT`, or a Someday or Reference title with `--title TEXT`.

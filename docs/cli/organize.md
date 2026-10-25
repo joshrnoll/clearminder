@@ -3,7 +3,7 @@
 Clarifying an item puts it on a list. Use `list` to see the reminders you have stored. Lists appear as tables by default:
 
 ```sh
-clearminder list next
+clearminder list next-actions
 clearminder list projects
 clearminder list waiting
 clearminder list calendar
@@ -11,12 +11,12 @@ clearminder list someday
 clearminder list reference
 ```
 
-Add `--json` to a list command when you need its items as a JSON array. For example, run `clearminder list next --json`. The `inbox` shortcut also accepts `--json`.
+Add `--json` to a list command when you need its items as a JSON array. For example, run `clearminder list next-actions --json`. The `inbox` shortcut also accepts `--json`.
 
 Use `--context` to narrow next actions, `--in-project` to find items attached to a project, or `--on` to show calendar items for one date:
 
 ```sh
-clearminder list next --context computer
+clearminder list next-actions --context computer
 clearminder list waiting --in-project 2b04eb04-0b68-46d0-bbb2-44749578a50c
 clearminder list calendar --on 2026-11-06
 ```
